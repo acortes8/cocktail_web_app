@@ -35,6 +35,13 @@ class CocktailsController < ApplicationController
     end
   end
 
+  def destroy
+    @cocktail = Cocktail.find(params[:id])
+    @cocktail.destroy
+
+    redirect_to root_path, status: :see_other
+  end
+
   private
     def cocktail_params
       params.require(:cocktail).permit(:name, :image_url, :ingredient, :instruction)
