@@ -16,14 +16,6 @@
   </div>
 
   <div>
-    <%= form.label :ingredient %><br>
-    <%= form.text_area :ingredient %>
-    <% cocktail.errors.full_messages_for(:ingredient).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div>
     <%= form.label :instruction %><br>
     <%= form.text_area :instruction %>
     <% cocktail.errors.full_messages_for(:instruction).each do |message| %>
