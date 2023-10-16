@@ -6,13 +6,3 @@ class Cocktail < ApplicationRecord
   validates :instruction, presence: true
   validates :spirit_type, presence:true
 end
-
-class Ingredient < ApplicationRecord
-  has_many :cocktail_ingredients
-  has_many :cocktails, through: :cocktail_ingredients
-end
-
-class CocktailIngredient < ApplicationRecord
-  belongs_to :cocktail
-  belongs_to :ingredient
-end
