@@ -5,10 +5,23 @@
 <p><%= @cocktail.instruction %></p>
 
 <ul>
-  <% @cocktail.ingredients.each do |ingredient| %>
+  <% @cocktail_ingredients.each do |cocktail_ingredient| %>
     <li>
-      <% ingredient.name %>
-      <% ingredient.description %>
+      <% if cocktail_ingredient.quantity.present? %>
+        <%= cocktail_ingredient.quantity %>
+      <% end %>
+
+      <% if cocktail_ingredient.unit.present? %>
+        <%= cocktail_ingredient.unit %>
+      <% end %>
+
+      <% if cocktail_ingredient.ingredient.name.present? %>
+        <%= cocktail_ingredient.ingredient.name %>
+      <% end %>
+
+      <% if cocktail_ingredient.description.present? %>
+        (<%= cocktail_ingredient.description %>)
+      <% end %>
     </li>
   <% end %>
 </ul>
