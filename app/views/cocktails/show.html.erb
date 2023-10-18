@@ -7,17 +7,9 @@
 <ul>
   <% @cocktail_ingredients.each do |cocktail_ingredient| %>
     <li>
-      <% if cocktail_ingredient.quantity.present? %>
-        <%= cocktail_ingredient.quantity %>
-      <% end %>
-
-      <% if cocktail_ingredient.unit.present? %>
-        <%= cocktail_ingredient.unit %>
-      <% end %>
-
-      <% if cocktail_ingredient.ingredient.name.present? %>
-        <%= cocktail_ingredient.ingredient.name %>
-      <% end %>
+      <%= cocktail_ingredient.quantity %>
+      <%= cocktail_ingredient.unit %>
+      <%= cocktail_ingredient.ingredient.name %>
 
       <% if cocktail_ingredient.description.present? %>
         (<%= cocktail_ingredient.description %>)

@@ -12,15 +12,23 @@ class CocktailsController < ApplicationController
 
   def new
     @cocktail = Cocktail.new
+    10.times { @cocktail.cocktail_ingredients.build.build_ingredient }
   end
 
   def create
     @cocktail = Cocktail.new(cocktail_params)
-
-    if @cocktail.save
-      redirect_to @cocktail
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @cocktail.save
+        format.html { redirect_to @cocktail, notice: "Cocktail successfully created."}
+        format.json {render :show, status: :created, location: @cocktail }
+      else
+        format.html { render :new }
+        format.json { render json: @cocktail.errors, status: :unprocessable_entity }
+        #if @cocktail.save
+        #redirect_to @cocktail
+        #else
+        #render :new, status: :unprocessable_entity
+      end
     end
   end
 
@@ -47,6 +55,6 @@ class CocktailsController < ApplicationController
 
   private
     def cocktail_params
-      params.require(:cocktail).permit(:name, :image_url, :instruction)
+      params.require(:cocktail).permit(:name, :image_url, :instruction, :spirit_type, :description, cocktail_ingredients_attributes: [:quantity, ingredient_attributes: [:name]])
     end
 end

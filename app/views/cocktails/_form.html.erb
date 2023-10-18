@@ -1,4 +1,16 @@
 <%= form_with model: cocktail do |form| %>
+
+  <% if @cocktail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cocktail.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+      <ul>
+        <% @cocktail.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div>
     <%= form.label :name %><br>
     <%= form.text_area :name %>
@@ -8,10 +20,34 @@
   </div>
 
   <div>
+    <%= form.label :spirit_type %><br>
+    <%= form.text_area :spirit_type %>
+    <% cocktail.errors.full_messages_for(:spirit_type).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
     <%= form.label :image_url %><br>
     <%= form.text_area :image_url %>
     <% cocktail.errors.full_messages_for(:image_url).each do |message| %>
       <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :quantity %><br>
+    <%= form.fields_for :cocktail_ingredients do |cocktail_ingredient_form| %>
+      <% cocktail_ingredient_form.text_area :quantity %> 
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :ingredient %><br>
+    <%= form.fields_for :cocktail_ingredients do |cocktail_ingredient_form| %>
+      <% cocktail_ingredient_form.fields_for :ingredient do |ingredient_form| %>
+        <%= ingredient_form.text_field :name %>
+      <% end %>
     <% end %>
   </div>
 
