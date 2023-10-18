@@ -1,0 +1,23 @@
+<div class="nested-fields">
+
+  <div class="ingredients">
+    <%= f.fields_for :ingredient do |ingredient| %>
+      <%= render "ingredient_fields", f: ingredient %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :quantity %>
+    <%= f.text_field :quantity %>
+  </div>
+
+  <div>
+    <%= f.label :unit %>
+    <%= f.text_field :unit %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+</div>

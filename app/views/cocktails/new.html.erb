@@ -1,3 +1,28 @@
 <h1>New Cocktail</h1>
 
-<%= render "form", cocktail: @cocktail %>
+<%= form_with model: @cocktail do |cocktail_form| %>
+  <% if @cocktail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cocktail.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+      <ul>
+        <% @cocktail.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= cocktail_form.text_field :title, placeholder: "Cocktail Name" %>
+  <h2>Ingredients</h2>
+  <div id="cocktailIngredients">
+    <%= cocktail_form.fields_for :cocktail_ingredients do |cocktail_ingredient_form| %>
+      <%= render "cocktail_ingredient_fields", f: cocktail_ingredient_form %>
+    <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'add ingredient', cocktail_form, :cocktail_ingredients %>
+    </div>
+  </div>
+
+  <br />
+  <%= cocktail_form.submit %>
+<% end %>

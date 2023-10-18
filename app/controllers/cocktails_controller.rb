@@ -12,7 +12,6 @@ class CocktailsController < ApplicationController
 
   def new
     @cocktail = Cocktail.new
-    10.times { @cocktail.cocktail_ingredients.build.build_ingredient }
   end
 
   def create
@@ -24,10 +23,6 @@ class CocktailsController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @cocktail.errors, status: :unprocessable_entity }
-        #if @cocktail.save
-        #redirect_to @cocktail
-        #else
-        #render :new, status: :unprocessable_entity
       end
     end
   end
@@ -38,11 +33,14 @@ class CocktailsController < ApplicationController
 
   def update
     @cocktail = Cocktail.find(params[:id])
-
-    if @cocktail.update(cocktail_params)
-      redirect_to @cocktail
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @cocktail.update(cocktail_params)
+        format.html { redirect_to @cocktail, notice: "Cocktail successfully updated."}
+        format.json {render :show, status: :created, location: @cocktail }
+      else
+        format.html { render :edit }
+        format.json { render json: @cocktail.errors, status: :unprocessable_entity }
+      end
     end
   end
 

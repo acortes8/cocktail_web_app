@@ -35,20 +35,14 @@
     <% end %>
   </div>
 
-  <div>
-    <%= form.label :quantity %><br>
-    <%= form.fields_for :cocktail_ingredients do |cocktail_ingredient_form| %>
-      <% cocktail_ingredient_form.text_area :quantity %> 
+  <h2>Ingredients</h2>
+  <div id="cocktailIngredients">
+    <%= cocktail_form.fields_for :cocktail_ingredients do |cocktail_ingredient_form| %>
+      <%= render "cocktail_ingredient_fields", f: cocktail_ingredient_form %>
     <% end %>
-  </div>
-
-  <div>
-    <%= form.label :ingredient %><br>
-    <%= form.fields_for :cocktail_ingredients do |cocktail_ingredient_form| %>
-      <% cocktail_ingredient_form.fields_for :ingredient do |ingredient_form| %>
-        <%= ingredient_form.text_field :name %>
-      <% end %>
-    <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'add ingredient', cocktail_form, :cocktail_ingredients %>
+    </div>
   </div>
 
   <div>
