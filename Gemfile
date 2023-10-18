@@ -12,6 +12,7 @@ gem "sprockets-rails"
 # Use Postgres as the database for Active Record
 gem "pg"
 
+# Use cocoon to handle nested form [https://github.com/nathanvda/cocoon]
 gem 'cocoon'
 
 # Use the Puma web server [https://github.com/puma/puma]
