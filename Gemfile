@@ -15,9 +15,6 @@ gem "pg"
 # Use cocoon to handle nested form [https://github.com/nathanvda/cocoon]
 gem 'cocoon'
 
-# Use webpacker to manage javascript modules [https://github.com/rails/webpacker]
-gem 'webpacker'
-
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
