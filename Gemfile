@@ -12,6 +12,9 @@ gem "sprockets-rails"
 # Use Postgres as the database for Active Record
 gem "pg"
 
+# Use jquery-rails, necessary for cocoon
+gem 'jquery-rails'
+
 # Use cocoon to handle nested form [https://github.com/nathanvda/cocoon]
 gem 'cocoon'
 
