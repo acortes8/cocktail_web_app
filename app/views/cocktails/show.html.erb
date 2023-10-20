@@ -19,6 +19,7 @@
 </ul>
 
 <ul>
+  <li><%= link_to "Back to all cocktails", root_path %></li>
   <li><%= link_to "Edit", edit_cocktail_path(@cocktail) %></li>
   <li><%= link_to "Destroy", cocktail_path(@cocktail), data: {
     turbo_method: :delete,

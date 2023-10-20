@@ -7,5 +7,5 @@ class Cocktail < ApplicationRecord
   validates :instruction, presence: true
   validates :spirit_type, presence: true
 
-  accepts_nested_attributes_for :cocktail_ingredients
+  accepts_nested_attributes_for :cocktail_ingredients, allow_destroy: true
 end
