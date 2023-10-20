@@ -1,8 +1,7 @@
-<%= form_with model: cocktail do |form| %>
-
+<%= form_with model: @cocktail do |cocktail_form| %>
   <% if @cocktail.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@cocktail.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+      <h2><%= pluralize(@cocktail.errors.count, "error") %> prohibited this cocktail from being saved:</h2>
       <ul>
         <% @cocktail.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -11,49 +10,20 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name %><br>
-    <%= form.text_area :name %>
-    <% cocktail.errors.full_messages_for(:name).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div>
-    <%= form.label :spirit_type %><br>
-    <%= form.text_area :spirit_type %>
-    <% cocktail.errors.full_messages_for(:spirit_type).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div>
-    <%= form.label :image_url %><br>
-    <%= form.text_area :image_url %>
-    <% cocktail.errors.full_messages_for(:image_url).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
+  <%= cocktail_form.text_field :name, placeholder: "Cocktail Name" %><br />
+  <br /><%= cocktail_form.text_field :spirit_type, placeholder: "Spirit Type" %><br />
+  <br /><%= cocktail_form.text_field :image_url, placeholder: "Cocktail Image Link" %><br />
+  <br /><%= cocktail_form.text_area :description, placeholder: "Cocktail Description" %><br />
+  <br /><%= cocktail_form.text_area :instruction, placeholder: "Cocktail Instructions" %>
   <h2>Ingredients</h2>
   <div id="cocktailIngredients">
     <%= cocktail_form.fields_for :cocktail_ingredients do |cocktail_ingredient_form| %>
       <%= render "cocktail_ingredient_fields", f: cocktail_ingredient_form %>
     <% end %>
     <div class='links'>
-      <%= link_to_add_association 'add ingredient', cocktail_form, :cocktail_ingredients %>
+      <%= link_to_add_association 'add ingredient', cocktail_form, :cocktail_ingredients, wrap_object: Proc.new { |cocktail_ingredient| cocktail_ingredient.build_ingredient; cocktail_ingredient } %>
     </div>
-  </div>
+  </div><br />
 
-  <div>
-    <%= form.label :instruction %><br>
-    <%= form.text_area :instruction %>
-    <% cocktail.errors.full_messages_for(:instruction).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= cocktail_form.submit %>
 <% end %>

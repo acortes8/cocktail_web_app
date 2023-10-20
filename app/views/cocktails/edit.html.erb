@@ -1,6 +1,2 @@
 <h1>Edit <%= @cocktail.name %></h1>
-
-<%= form_with model: @cocktail do |form| %>
-  <%= form.text_field :name, placeholder: "Cocktail Name" %>
-  <%= form.submit %>
-<% end %>
+<%= render "form" %>
