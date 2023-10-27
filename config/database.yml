@@ -23,7 +23,9 @@ default: &default
 
 development:
   <<: *default
-  database: cocktail_web_app_development
+  database: cocktailwebapp_development
+  username: alex
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +59,9 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: cocktail_web_app_test
+  database: cocktailwebapp_test
+  username: alex
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -81,7 +85,7 @@ test:
 #
 production:
   <<: *default
-# database: cocktail_web_app_production
-# username: cocktail_web_app
-# password: <%= ENV["COCKTAIL_WEB_APP_DATABASE_PASSWORD"] %>
-  url: <%= ENV["DATABASE_URL"] %>
+  database: cocktailwebapp_production
+  username: alex
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
