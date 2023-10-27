@@ -83,4 +83,4 @@ production:
   <<: *default
   database: cocktail_web_app_production
   username: cocktail_web_app
-  password: <%= ENV["TEST_WEB_APP_DATABASE_PASSWORD"] %>
+  password: <%= ENV["COCKTAIL_WEB_APP_DATABASE_PASSWORD"] %>
