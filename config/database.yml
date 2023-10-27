@@ -1,17 +1,16 @@
-development:
+default: &default
   adapter: postgresql
   encoding: unicode
-  database: cocktail_development
   pool: 5
+
+development:
+  <<: *default
+  database: cocktail_dev
 
 test:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: cocktail_test
-  pool: 5
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: cocktail_production
-  pool: 5
+  <<: *default
+  database: cocktail
