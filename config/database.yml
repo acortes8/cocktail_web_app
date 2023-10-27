@@ -9,3 +9,9 @@ test:
   encoding: unicode
   database: cocktail_test
   pool: 5
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: cocktail_production
+  pool: 5
