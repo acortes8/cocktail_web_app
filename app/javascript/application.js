@@ -4,3 +4,4 @@ import "controllers"
 import "@nathanvda/cocoon"
 import 'jquery'
 import 'jquery_ujs'
+import "cocoon-js-vanilla";
